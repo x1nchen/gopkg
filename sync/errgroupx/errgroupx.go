@@ -63,7 +63,7 @@ func (g *Group) Wait() error {
 	}
 
 	if g.cancel != nil {
-		g.cancel()n
+		g.cancel()
 	}
 
 	return g.err
