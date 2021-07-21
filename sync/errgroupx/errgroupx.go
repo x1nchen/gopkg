@@ -28,7 +28,7 @@ func WithContext(ctx context.Context, parallel int) (*Group, context.Context) {
 	g := new(Group)
 	g.ctx = groupCtx
 	g.cancel = cancel
-	g.ch = make(chan func() error, parallel)
+	g.ch = make(chan func() error)
 	for i := 0; i < parallel; i++ {
 		go func() {
 			for f := range g.ch {
@@ -63,7 +63,7 @@ func (g *Group) Wait() error {
 	}
 
 	if g.cancel != nil {
-		g.cancel()
+		g.cancel()n
 	}
 
 	return g.err
